@@ -3,14 +3,13 @@ CREATE TABLE IF NOT EXISTS public.artists (
 	name varchar(256),
 	location varchar(256),
 	lattitude numeric(18,0),
-    longitude numeric(18,0)
+	longitude numeric(18,0)
 );
 
-
 CREATE TABLE IF NOT EXISTS public.songplays (
-	playid varchar(32) ,
-	start_time timestamp ,
-	userid int4,
+	playid varchar(32) NOT NULL,
+	start_time timestamp NOT NULL,
+	userid int4 NOT NULL,
 	"level" varchar(256),
 	songid varchar(256),
 	artistid varchar(256),
@@ -63,17 +62,15 @@ CREATE TABLE IF NOT EXISTS public.staging_songs (
 	"year" int4
 );
 
-CREATE TABLE IF NOT EXISTS public.staging_songs (
-	num_songs int4,
-	artist_id varchar(256),
-	artist_name varchar(256),
-	artist_latitude numeric(18,0),
-	artist_longitude numeric(18,0),
-	artist_location varchar(256),
-	song_id varchar(256),
-	title varchar(256),
-	duration numeric(18,0),
-	"year" int4
+CREATE TABLE IF NOT EXISTS public."time" (
+	start_time timestamp NOT NULL,
+	"hour" int4,
+	"day" int4,
+	week int4,
+	"month" varchar(256),
+	"year" int4,
+	weekday varchar(256),
+	CONSTRAINT time_pkey PRIMARY KEY (start_time)
 );
 
 CREATE TABLE IF NOT EXISTS public.users (
@@ -83,14 +80,4 @@ CREATE TABLE IF NOT EXISTS public.users (
 	gender varchar(256),
 	"level" varchar(256),
 	CONSTRAINT users_pkey PRIMARY KEY (userid)
-);
-
-CREATE TABLE IF NOT EXISTS time (
-    start_time timestamp PRIMARY KEY,
-    hour varchar,
-    day varchar,
-    week varchar,
-    month varchar,
-    year varchar,
-    weekday varchar
 );
